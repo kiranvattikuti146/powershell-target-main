@@ -1,0 +1,62 @@
+name: PowerShell on Target Machines
+
+on:
+  workflow_dispatch:
+    inputs:
+      Machines:
+        description: Target Machines
+        required: true
+      UserName:
+        description: Username
+        required: true
+      UserPassword:
+        description: Password
+        required: true
+      ScriptType:
+        description: Script Type ('FilePath' | 'Inline')
+        required: true
+        default: Inline
+      ScriptPath:
+        description: Script File Path (Required when ScriptType = FilePath)
+        required: false
+      InlineScript:
+        description: Inline Script (Required when ScriptType = Inline)
+        required: false
+      ScriptArguments:
+        description: Script Arguments (Optional, use when ScriptType = FilePath)
+        required: false
+      InitializationScript:
+        description: Initialization script (Optional)
+        required: false
+      SessionVariables:
+        description: Session Variables (Optional)
+        required: false
+      CommunicationProtocol:
+        description: Protocol ('Http' | 'Https')
+        required: true
+        default: Https
+      AuthenticationMechanism:
+        description: Authentication ('Default' | 'Credssp')
+        required: true
+        default: Default
+      NewPsSessionOptionArguments:
+        description: Session Option parameters
+        required: true
+        default: '-SkipCACheck -IdleTimeout 7200000 -OperationTimeout 0 -OutputBufferingMode Block'
+
+jobs:
+  powershell-task:
+    uses: ./reusable-workflows/powershell-task.yml
+    with:
+      Machines: ${{ inputs.Machines }}
+      UserName: ${{ inputs.UserName }}
+      UserPassword: ${{ inputs.UserPassword }}
+      ScriptType: ${{ inputs.ScriptType }}
+      ScriptPath: ${{ inputs.ScriptPath }}
+      InlineScript: ${{ inputs.InlineScript }}
+      ScriptArguments: ${{ inputs.ScriptArguments }}
+      InitializationScript: ${{ inputs.InitializationScript }}
+      SessionVariables: ${{ inputs.SessionVariables }}
+      CommunicationProtocol: ${{ inputs.CommunicationProtocol }}
+      AuthenticationMechanism: ${{ inputs.AuthenticationMechanism }}
+      NewPsSessionOptionArguments: ${{ inputs.NewPsSessionOptionArguments }}
