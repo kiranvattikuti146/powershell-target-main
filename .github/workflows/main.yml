@@ -9,12 +9,12 @@ jobs:
   powershell-task:
     uses: kirandevops1993/powershell-reusable/.github/workflows/reusable.yml@main
     with:
-      Machines: ${{ secrets.Machines }}  # Use GitHub Secrets for sensitive data
-      UserName: ${{ secrets.UserName }}
-      UserPassword: ${{ secrets.UserPassword }}
+      Machines: ${{ TargetMachines }}  # Use GitHub Secrets for sensitive data
+      UserName: ${{ AdminUser }}
+      UserPassword: ${{ myUserPassword }}
       ScriptType: Inline  # Default value; update as needed
       ScriptPath: ""  # Required if ScriptType = FilePath
-      InlineScript: ${{ secrets.InlineScript }}  # Required if ScriptType = Inline
+      InlineScript: ${{  InlineScriptContent }}  # Required if ScriptType = Inline
       ScriptArguments: ""  # Optional
       Sensitive_Alphanumeric_Info_1: ""  # Optional
       SessionVariables: ""  # Optional
