@@ -7,7 +7,7 @@ on:
 
 jobs:
   powershell-task:
-    uses: ./reusable-workflows/powershell-task.yml
+    uses: kirandevops1993/powershell-reusable/.github/workflows/reusable.yml@main
     with:
       Machines: ${{ secrets.Machines }}  # Use GitHub Secrets for sensitive data
       UserName: ${{ secrets.UserName }}
