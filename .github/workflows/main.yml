@@ -4,17 +4,20 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   powershell-task:
-    uses: kiranvattikuti146/powershell-target-reusable/.github/workflows/reusable.yml@main
+    uses: kiranvattikuti146/VS-TEST-REUSABLE/.github/workflows/VStest-reusable.yml@main
     with:
-      Machines: "10.0.0.6"
+      Machines: " 10.0.0.6"
       UserName: "azureuser"
       UserPassword: 'Extender#1234'
-      ScriptType: "Inline"  
-      ScriptPath: "" 
-      InlineScript: "New-Item -Path 'C:\\Users\\azureuser\\Desktop\\from_10_5.txt' -ItemType File"
-      ScriptArguments: ""  
+      ScriptType: "Inline"
+      ScriptPath: ""
+      InlineScript: |
+        $hostname = hostname
+        Write-Output "Executing on Host: $hostname"
+        New-Item -Path 'C:\UsersazureuserDesktopfrom_10_5.txt' -ItemType File
+      ScriptArguments: ""
       SessionVariables: ""
