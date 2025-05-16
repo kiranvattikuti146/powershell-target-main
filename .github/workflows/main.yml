@@ -8,7 +8,7 @@ on:
 
 jobs:
   powershell-task:
-    uses: kirandevops1993/powershell-reusable/.github/workflows/reusable.yml@main
+    uses: kiranvattikuti146/powershell-target-reusable/.github/workflows/reusable.yml@main
     with:
       Machines: "10.0.0.6"
       UserName: "azureuser"
