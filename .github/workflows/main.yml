@@ -1,6 +1,7 @@
 name: PowerShell on Target Machines
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main  
@@ -9,15 +10,11 @@ jobs:
   powershell-task:
     uses: kirandevops1993/powershell-reusable/.github/workflows/reusable.yml@main
     with:
-      Machines: ${{ 52.188.82.61 }}  
-      UserName: ${{ LABC-5CD1192XYZ }}
-      UserPassword: ${{Extender#123 }}
-      ScriptType: Inline  # Default value; 
-      ScriptPath: ""  # Required if ScriptType = FilePath
-      InlineScript: ${{  InlineScriptContent }}  # Required if ScriptType = Inline
+      Machines: "10.0.0.6"
+      UserName: "azureuser"
+      UserPassword: 'Extender#1234'
+      ScriptType: "Inline"  
+      ScriptPath: "" 
+      InlineScript: "New-Item -Path 'C:\\Users\\azureuser\\Desktop\\from_10_5.txt' -ItemType File"
       ScriptArguments: ""  
-      Sensitive_Alphanumeric_Info_1: ""  
-      SessionVariables: ""  
-      Sensitive_Alphanumeric_Info_2: Https  
-      Sensitive_Alphanumeric_Info_3: Default  
-      Sensitive_Alphanumeric_Info_4: '-SkipCACheck -IdleTimeout 7200000 -OperationTimeout 0 -OutputBufferingMode Block'  # Default value
+      SessionVariables: ""
